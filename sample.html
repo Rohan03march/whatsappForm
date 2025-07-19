@@ -1,16 +1,106 @@
-<form id="myForm">
-  <label>Name: <input type="text" name="name" required></label><br>
-  <label>Location: <input type="text" name="location" required></label><br>
-  <label>Sex: 
-    <select name="sex">
-      <option>Male</option>
-      <option>Female</option>
-      <option>Other</option>
-    </select>
-  </label><br>
-  <label>Position: <input type="text" name="position" required></label><br>
-  <button type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form to WhatsApp</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f7f8fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  h2 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #1ebe5d;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Submit Your Info</h2>
+  <form id="myForm">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" name="name" id="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" name="location" id="location" required>
+    </div>
+
+    <div class="form-group">
+      <label for="sex">Sex</label>
+      <select name="sex" id="sex">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="position">Position</label>
+      <input type="text" name="position" id="position" required>
+    </div>
+
+    <button type="submit">Send to WhatsApp</button>
+  </form>
+</div>
 
 <script>
 document.getElementById('myForm').addEventListener('submit', function(e) {
@@ -22,16 +112,19 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
     const sex = formData.get('sex');
     const position = formData.get('position');
 
-    const message = `New Form Submission:
-Name: ${name}
-Location: ${location}
-Sex: ${sex}
+    const message = `New Form Submission:%0A
+Name: ${name}%0A
+Location: ${location}%0A
+Sex: ${sex}%0A
 Position: ${position}`;
 
-    const phone = '9108021638'; // 📱 Replace with your WhatsApp number, including country code
+    const phone = '9108021638'; // 📱 Replace with your WhatsApp number (with country code)
 
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phone}?text=${message}`;
 
     window.open(url, '_blank');
 });
 </script>
+
+</body>
+</html>

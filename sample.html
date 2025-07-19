@@ -1,0 +1,37 @@
+<form id="myForm">
+  <label>Name: <input type="text" name="name" required></label><br>
+  <label>Location: <input type="text" name="location" required></label><br>
+  <label>Sex: 
+    <select name="sex">
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+  </label><br>
+  <label>Position: <input type="text" name="position" required></label><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const location = formData.get('location');
+    const sex = formData.get('sex');
+    const position = formData.get('position');
+
+    const message = `New Form Submission:
+Name: ${name}
+Location: ${location}
+Sex: ${sex}
+Position: ${position}`;
+
+    const phone = '9108021638'; // 📱 Replace with your WhatsApp number, including country code
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, '_blank');
+});
+</script>
